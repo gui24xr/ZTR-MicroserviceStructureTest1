@@ -1,0 +1,29 @@
+basicamente tendra las tareas de:
+
+1- redireccionar las peticiones de los usuarios a los microservicios correspondientes
+2- balancear la carga evitando  la sobrecarga de peticiones
+3- autenticacion y autorizacion de users-
+
+
+como crear un proyecto api gateway en srping?? 
+crear un proyecto maven con la dependencia
+
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway-mvc</artifactId>
+		</dependency>
+
+ y ahora Necesitamos:
+1- transformar el server api gateway en cliente del eureka server para que pueda averiguar a donde estan los microservicios a los cuales el debe redirigir las peticione.  Lo hacemos agregandole(al igual que a cada microservicio) la dependendcia y haciendo las configuraciones correspondientes 
+
+	<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+y ya ahora vamos el api gateway sera cliente del eureka discovery server
+
+
+CONFIGURACIONDE RUTAS: POR CADA microservicio
+spring.cloud.gateway.routes[0].id=microservice01
+spring.cloud.gateway.routes[0].uri=lb://MICROSERVICE01
+spring.cloud.gateway.routes[0].predicates[0]=microservice01

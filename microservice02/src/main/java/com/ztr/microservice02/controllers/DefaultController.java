@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/microservice2")
+@RequestMapping("/api/microservice02")
 public class DefaultController {
-    @GetMapping("/")
+    @GetMapping
     public String hello() {
         return "Hello, Soy microservicio 2!";
     }
